@@ -6,7 +6,7 @@ const chatIntroduction = document.getElementById("chat-introduction");
 const sendButton = document.getElementById("send-button");
 const suggestionList = document.getElementById("suggestion-list");
 const clearButton = document.getElementById("btn-clear");
-
+const learnMode = document.getElementById("learn-mode");
 
 // Pertanyaan nyata untuk tiap topik di menu beranda (?q=Kehamilan, dst.)
 const TOPIK = {
@@ -57,6 +57,8 @@ function addMessage(sender, message) {
 
     chatMessages.appendChild(messageElement);
     scrollToBottom();
+
+    return messageElement;
 }
 
 
@@ -78,6 +80,31 @@ function hideTyping() {
     if (element) element.remove();
 }
 
+// Mode belajar: tampilkan 3 kandidat intent teratas di bawah jawaban
+async function showCandidates(botElement, text) {
+    try {
+        const res = await fetch("/api/explain", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: text })
+        });
+        const data = await res.json();
+
+        const list = document.createElement("ol");
+        list.className = "candidates";
+        data.candidates.forEach(function (c) {
+            const li = document.createElement("li");
+            const lolos = c.score >= data.threshold ? "lolos ambang" : "di bawah ambang";
+            li.textContent = c.intent + " · " + c.score.toFixed(2) + " (" + lolos + ") — pola “" + c.pattern + "”";
+            list.appendChild(li);
+        });
+
+        botElement.appendChild(list);
+        scrollToBottom();
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 // Mengirim pesan ke Flask
 async function sendMessage(message) {
@@ -109,7 +136,10 @@ async function sendMessage(message) {
         }
 
         hideTyping();
-        addMessage("bot", result.reply);    // kunci dari Flask adalah "reply"
+        const botElement = addMessage("bot", result.reply);
+        if (learnMode && learnMode.checked) {
+            await showCandidates(botElement, message);
+        }
 
     } catch (error) {
         hideTyping();
