@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistik MamaBot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='img/mamabot-icon.svg') }}">
+</head>
+<body class="plain-page">
+<main class="plain-card admin">
+    <header class="admin-head">
+        <img src="{{ url_for('static', filename='img/mamabot-icon.svg') }}" alt="" width="48" height="48">
+        <div>
+            <h1>Statistik MamaBot</h1>
+            <p class="muted">Temukan pertanyaan yang belum dipahami bot, lalu tambahkan polanya ke
+               <code>themes/{{ theme.id }}.json</code>. Ambang saat ini: {{ threshold }}.</p>
+        </div>
+    </header>
+
+    <div class="stat-grid">
+        <div class="stat"><span class="stat-num">{{ summary.total }}</span><span>pertanyaan</span></div>
+        <div class="stat"><span class="stat-num">{{ summary.persen_dikenali }}%</span><span>dikenali</span></div>
+        <div class="stat"><span class="stat-num">{{ summary.tidak_dikenali }}</span><span>tidak dikenali</span></div>
+        <div class="stat"><span class="stat-num">{{ summary.sesi }}</span><span>pengunjung (sesi)</span></div>
+    </div>
+
+    <h2>Jumlah pertanyaan per intent</h2>
+    {% if stats %}
+    <div class="table-wrap">
+    <table class="table">
+        <thead><tr><th>Intent</th><th>Jumlah</th><th>Proporsi</th></tr></thead>
+        <tbody>
+        {% for s in stats %}
+            <tr>
+                <td>{{ s.intent }}</td>
+                <td>{{ s.jumlah }}</td>
+                <td><div class="bar"><span style="width: {{ (100 * s.jumlah / summary.total) | round(1) }}%"></span></div></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    {% else %}
+    <p class="muted">Belum ada percakapan.</p>
+    {% endif %}
+
+    <h2>Pertanyaan yang tidak dikenali (terbaru)</h2>
+    {% if unknown %}
+    <div class="table-wrap">
+    <table class="table">
+        <thead><tr><th>Pertanyaan</th><th>Skor tertinggi</th><th>Waktu</th></tr></thead>
+        <tbody>
+        {% for u in unknown %}
+            <tr><td>{{ u.text }}</td><td>{{ "%.2f" | format(u.score or 0) }}</td><td>{{ u.created_at }}</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    {% else %}
+    <p class="muted">Tidak ada. Semua pertanyaan dikenali.</p>
+    {% endif %}
+
+    <p><a class="plain-link" href="{{ url_for('chat') }}">&larr; Kembali ke chat</a></p>
+</main>
+</body>
+</html>

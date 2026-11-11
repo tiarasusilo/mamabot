@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat MamaBot</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='img/mamabot-icon.svg') }}">
+</head>
+<body class="chat-page">
+
+    <div class="chat-shell">
+
+        <div class="shell-aura" aria-hidden="true"></div>
+        <div class="shell-glow" aria-hidden="true"></div>
+
+        <div class="chat-container">
+
+            <header class="chat-header">
+                <a href="{{ url_for('index') }}" class="back-button" aria-label="Kembali ke beranda">
+                    <svg class="ic" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+                </a>
+                
+                <img src="{{ url_for('static', filename='img/mamabot-icon.svg') }}" alt="" width="42" height="42">
+
+                <div class="chat-header-info">
+                    <h2>MamaBot</h2>
+                    <span><i class="online-dot"></i> Siap membantu Bunda</span>
+                </div>
+
+                <button type="button" id="btn-clear" class="clear-button">Hapus riwayat</button>
+            </header>
+
+            <main class="chat-content" id="chat-content">
+                <div class="chat-introduction" id="chat-introduction">
+                    <div class="welcome-icon">
+                        <svg class="ic" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>
+                    </div>
+                    <h1>Halo, Bunda!</h1>
+                    <p>
+                        Selamat datang di MamaBot. Silakan tanyakan
+                        sesuatu seputar kesehatan ibu dan perawatan bayi.
+                    </p>
+
+                    <div class="suggestion-section">
+                        <p>Beberapa hal yang bisa Bunda tanyakan:</p>
+
+                        <div id="suggestion-list" class="suggestion-list">
+                            <button type="button" class="suggestion-button">
+                                Apa makanan yang baik untuk ibu hamil?
+                            </button>
+                            <button type="button" class="suggestion-button">
+                                Bagaimana tanda-tanda persalinan?
+                            </button>
+                            <button type="button" class="suggestion-button">
+                                Bagaimana cara menyusui yang benar?
+                            </button>
+                            <button type="button" class="suggestion-button">
+                                Kapan bayi mulai diberikan MPASI?
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="chat-messages" class="chat-messages" aria-live="polite"></div>
+            </main>
+
+            <div class="chat-input-area">
+                <form id="chat-form">
+                    <label for="message-input" class="sr-only">Pertanyaan untuk MamaBot</label>
+                    <input
+                        type="text"
+                        id="message-input"
+                        placeholder="Tulis pertanyaan Bunda di sini..."
+                        autocomplete="off"
+                        required
+                    >
+                    <button type="submit" id="send-button">Kirim</button>
+                </form>
+
+                <p class="disclaimer">
+                    Informasi MamaBot bersifat edukatif dan bukan pengganti
+                    konsultasi tenaga kesehatan.
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+/* =========================================================
+   ADMIN & HALAMAN GALAT MamaBot — pastel glass
+   Dipakai oleh admin.html dan 404.html
+   ========================================================= */
+
+:root {
+    --ink: #1f1f2b;
+    --ink-soft: #7b7b88;
+    --pink: #f06fc6;
+    --pink-deep: #e255b4;
+    --line: #f1e4ee;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { margin: 0; }
+
+body, button, input {
+    font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+    color: var(--ink);
+}
+
+h1, h2 { margin: 0; letter-spacing: -.02em; }
+a { text-decoration: none; }
+
+:focus-visible { outline: 2px solid var(--pink-deep); outline-offset: 3px; }
+
+/* ---------- Halaman ---------- */
+body.plain-page {
+    min-height: 100vh;
+    padding: clamp(14px, 4vw, 48px) clamp(12px, 3vw, 24px);
+    background:
+        radial-gradient(ellipse at 6% 8%, rgba(255, 229, 220, .95), transparent 42%),
+        radial-gradient(ellipse at 96% 18%, rgba(222, 232, 255, .95), transparent 44%),
+        radial-gradient(ellipse at 55% 105%, rgba(255, 221, 236, .95), transparent 46%),
+        #fdf9fa;
+    background-attachment: fixed;
+}
+
+/* ---------- Kartu utama (kaca) ---------- */
+.plain-card {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: clamp(20px, 4vw, 36px);
+    border: 1px solid rgba(255, 255, 255, .95);
+    border-radius: 28px;
+    background: rgba(255, 255, 255, .72);
+    -webkit-backdrop-filter: blur(18px) saturate(1.2);
+    backdrop-filter: blur(18px) saturate(1.2);
+    box-shadow:
+        0 0 0 6px rgba(255, 255, 255, .4),
+        0 24px 60px rgba(100, 94, 115, .14);
+}
+
+/* ---------- Kepala halaman ---------- */
+.admin-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.admin-head img {
+    flex: none;
+    width: 56px; height: 56px;
+    padding: 9px;
+    border: 2.5px solid transparent;
+    border-radius: 50%;
+    background:
+        linear-gradient(#fff, #fff) padding-box,
+        linear-gradient(135deg, #f1a0dc, #a9b8f4 55%, #7fdce0) border-box;
+    box-shadow: 0 5px 14px rgba(160, 110, 170, .22);
+}
+
+.plain-card h1 { font-size: clamp(22px, 3.4vw, 30px); font-weight: 800; line-height: 1.2; }
+
+.muted {
+    margin: 4px 0 0;
+    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+code {
+    padding: 2px 7px;
+    border-radius: 7px;
+    background: #fdeaf6;
+    color: var(--pink-deep);
+    font-size: .88em;
+    font-weight: 600;
+}
+
+/* ---------- Kotak angka ringkasan ---------- */
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    margin-top: 28px;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 18px 20px;
+    border: 1px solid #fff;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, .8);
+    box-shadow: 0 6px 22px rgba(110, 100, 130, .07);
+    color: var(--ink-soft);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Tiap kotak diberi aksen warna pastel berbeda */
+.stat:nth-child(1) { background: linear-gradient(160deg, #fff, #ffeee8); }
+.stat:nth-child(2) { background: linear-gradient(160deg, #fff, #e8f7ee); }
+.stat:nth-child(3) { background: linear-gradient(160deg, #fff, #ffe8f3); }
+.stat:nth-child(4) { background: linear-gradient(160deg, #fff, #e6ecff); }
+
+.stat-num {
+    color: var(--ink);
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -.03em;
+    line-height: 1.15;
+}
+
+/* ---------- Judul bagian ---------- */
+.plain-card h2 {
+    margin: 34px 0 12px;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+/* ---------- Tabel ---------- */
+.table-wrap {
+    overflow-x: auto;
+    border: 1px solid #fff;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, .8);
+    box-shadow: 0 6px 22px rgba(110, 100, 130, .07);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.table th,
+.table td {
+    padding: 13px 18px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.table thead th {
+    color: var(--ink-soft);
+    background: rgba(253, 234, 246, .55);
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.table tbody td { border-top: 1px solid var(--line); }
+.table tbody tr:hover td { background: rgba(253, 234, 246, .35); }
+
+/* Batang proporsi */
+.bar {
+    height: 9px;
+    min-width: 110px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #f6e9f2;
+}
+.bar span {
+    display: block;
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #f1a0dc, var(--pink));
+}
+
+/* ---------- Tautan & tombol ---------- */
+.plain-link {
+    display: inline-block;
+    margin-top: 28px;
+    padding: 10px 20px;
+    border: 1px solid #fff;
+    border-radius: 999px;
+    background: #fff;
+    box-shadow: 0 3px 10px rgba(110, 100, 130, .10);
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 600;
+    transition: color .18s ease, background .18s ease, transform .18s ease;
+}
+.plain-link:hover { color: var(--pink-deep); background: #fde9f6; transform: translateX(-2px); }
+
+.plain-button {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 12px 26px;
+    border-radius: 999px;
+    background: var(--pink);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+.plain-button:hover {
+    background: var(--pink-deep);
+    transform: translateY(-1px);
+    box-shadow: 0 5px 14px rgba(221, 103, 180, .28);
+}
+
+/* ---------- Halaman galat (404 / 403) ---------- */
+.error-card {
+    max-width: 460px;
+    margin-top: 12vh;
+    text-align: center;
+}
+.error-card img {
+    width: 64px; height: 64px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2.5px solid transparent;
+    border-radius: 50%;
+    background:
+        linear-gradient(#fff, #fff) padding-box,
+        linear-gradient(135deg, #f1a0dc, #a9b8f4 55%, #7fdce0) border-box;
+    box-shadow: 0 5px 14px rgba(160, 110, 170, .22);
+}
+.error-card h1 { font-size: 56px; color: var(--pink); line-height: 1.1; }
+.error-card h2 { margin: 4px 0 10px; font-size: 19px; }
+.error-card p { margin: 0 0 18px; color: var(--ink-soft); line-height: 1.6; }
+
+/* ---------- HP ---------- */
+@media (max-width: 600px) {
+    .plain-card { border-radius: 22px; }
+    .admin-head img { width: 48px; height: 48px; }
+    .table th, .table td { padding: 11px 12px; }
+    .stat-num { font-size: 28px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .plain-link, .plain-button { transition: none; }
+}

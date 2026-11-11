@@ -1,0 +1,71 @@
+kalimat,intent
+bun makanan apa yang bagus buat ibu hamil,makanan_hamil
+gizi seimbang untuk bumil itu seperti apa,makanan_hamil
+boleh nggak sih ibu hamil ngopi,kopi_hamil
+minum teh saat hamil aman nggak,kopi_hamil
+kenapa ya aku mual terus pas hamil muda,mual_hamil
+cara mengurangi mual saat hamil muda,mual_hamil
+ibu hamil boleh senam nggak,olahraga_hamil
+olahraga apa yang aman untuk ibu hamil,olahraga_hamil
+apa saja tanda bahaya pada kehamilan,bahaya_hamil
+hamil keluar darah apakah bahaya,bahaya_hamil
+gimana ciri ciri mau melahirkan,tanda_melahirkan
+kontraksi persalinan itu seperti apa,tanda_melahirkan
+apa saja yang harus disiapkan sebelum lahiran,persiapan_persalinan
+rencana persalinan itu bagaimana,persiapan_persalinan
+barang apa saja yang dibawa ke rumah sakit untuk melahirkan,perlengkapan_persalinan
+isi tas lahiran apa saja,perlengkapan_persalinan
+masa nifas itu berapa lama,masa_nifas
+bagaimana cara merawat diri saat nifas,masa_nifas
+cara merawat jahitan setelah melahirkan,luka_persalinan
+jahitan lahiran sakit bagaimana,luka_persalinan
+kapan bayi pertama kali disusui,asi_pertama
+apa itu imd,asi_pertama
+asi eksklusif itu sampai kapan,asi_eksklusif
+bayi tidak boleh minum air putih saat asi eksklusif,asi_eksklusif
+cara simpan asi perah di kulkas,simpan_asi
+asip tahan berapa lama,simpan_asi
+asi saya sedikit gimana ya,asi_sedikit
+asi tidak keluar banyak,asi_sedikit
+cara menyusui bayi yang benar,posisi_menyusui
+bagaimana posisi menyusui yang nyaman,posisi_menyusui
+bayi umur berapa boleh mpasi,mulai_mpasi
+kapan sebaiknya mulai mpasi,mulai_mpasi
+contoh menu mpasi pertama,menu_mpasi
+makanan apa untuk bayi mpasi,menu_mpasi
+mpasi sehari berapa kali,frekuensi_mpasi
+jadwal mpasi bayi 7 bulan,frekuensi_mpasi
+bayi boleh dikasih madu nggak,madu_bayi
+madu aman untuk bayi usia berapa,madu_bayi
+tekstur mpasi bayi 8 bulan,tekstur_mpasi
+kapan mpasi boleh dicincang,tekstur_mpasi
+gimana cara mandiin bayi baru lahir,mandi_bayi
+bayi sebaiknya mandi berapa kali sehari,mandi_bayi
+berapa jam bayi tidur dalam sehari,tidur_bayi
+bayi sering bangun malam kenapa,tidur_bayi
+bayi tidur telentang atau miring yang aman,posisi_tidur_bayi
+boleh nggak bayi tidur tengkurap,posisi_tidur_bayi
+bagaimana cara merawat pusar bayi yang belum puput,tali_pusat
+tali pusat bayi boleh diberi minyak nggak,tali_pusat
+berapa kali sehari ganti popok bayi,ganti_popok
+cara mencegah ruam popok pada bayi,ganti_popok
+halo selamat siang,salam
+selamat pagi mamabot,salam
+kamu itu siapa,perkenalan_bot
+mamabot itu manusia atau bukan,perkenalan_bot
+mamabot bisa jawab apa saja,kemampuan_bot
+apa yang bisa kamu bantu,kemampuan_bot
+bayi saya kejang,darurat_medis
+bayi saya sesak napas,darurat_medis
+ibu perdarahan hebat setelah melahirkan,darurat_medis
+kapan harus ke bidan,konsultasi_nakes
+kapan bayi perlu dibawa ke dokter anak,konsultasi_nakes
+posyandu itu apa,posyandu
+posyandu ada imunisasi nggak,posyandu
+terima kasih banyak bun,terima_kasih
+makasih ya mamabot,terima_kasih
+bye bye,pamit
+sampai jumpa lagi mamabot,pamit
+siapa presiden indonesia,fallback
+harga bensin hari ini berapa,fallback
+resep nasi goreng enak,fallback

@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ code or 404 }} - MamaBot</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='img/mamabot-icon.svg') }}">
+
+    <style>
+        body.plain-page {
+            height: auto;
+            min-height: 100dvh;
+            display: grid;
+            place-items: center;
+            padding: 24px 16px;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background:
+                radial-gradient(ellipse at 6% 8%, rgba(255, 229, 220, .95), transparent 42%),
+                radial-gradient(ellipse at 96% 18%, rgba(222, 232, 255, .95), transparent 44%),
+                radial-gradient(ellipse at 55% 105%, rgba(255, 221, 236, .95), transparent 46%),
+                #fdf9fa;
+        }
+
+        .error-card {
+            width: 100%;
+            max-width: 440px;
+            padding: 36px 32px 32px;
+            text-align: center;
+            box-sizing: border-box;
+            border: 1px solid rgba(255, 255, 255, .95);
+            border-radius: 28px;
+            background: rgba(255, 255, 255, .72);
+            -webkit-backdrop-filter: blur(18px) saturate(1.2);
+            backdrop-filter: blur(18px) saturate(1.2);
+            box-shadow: 0 0 0 6px rgba(255, 255, 255, .4),
+                        0 24px 60px rgba(100, 94, 115, .14);
+        }
+
+        .error-card img {
+            width: 64px;
+            height: 64px;
+            padding: 10px;
+            margin-bottom: 8px;
+            border: 2.5px solid transparent;
+            border-radius: 50%;
+            background:
+                linear-gradient(#fff, #fff) padding-box,
+                linear-gradient(135deg, #f1a0dc, #a9b8f4 55%, #7fdce0) border-box;
+            box-shadow: 0 5px 14px rgba(160, 110, 170, .22);
+        }
+
+        .error-card h1 {
+            margin: 0;
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--pink, #e78ac1);
+        }
+
+        .error-card h2 {
+            margin: 4px 0 10px;
+            font-size: 19px;
+            font-weight: 700;
+            color: #37313d;
+        }
+
+        .error-card p {
+            margin: 0 0 20px;
+            color: var(--ink-soft, #77717e);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .plain-button {
+            display: inline-block;
+            padding: 12px 26px;
+            border-radius: 999px;
+            color: #fff;
+            background: var(--pink, #e78ac1);
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background .18s ease, transform .18s ease, box-shadow .18s ease;
+        }
+
+        .plain-button:hover {
+            background: var(--pink-deep, #d66eaa);
+            transform: translateY(-1px);
+            box-shadow: 0 5px 14px rgba(221, 103, 180, .28);
+        }
+
+        @media (max-width: 480px) {
+            .error-card {
+                padding: 32px 22px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .plain-button {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="plain-page">
+    <main class="error-card">
+        <img
+            src="{{ url_for('static', filename='img/mamabot-icon.svg') }}"
+            alt="MamaBot"
+            width="56"
+            height="56"
+        >
+
+        <h1>{{ code or 404 }}</h1>
+
+        <h2>
+            {% if code == 403 %}
+                Akses ditolak
+            {% else %}
+                Halaman tidak ditemukan
+            {% endif %}
+        </h2>
+
+        <p>{{ message }}</p>
+
+        <a class="plain-button" href="{{ url_for('index') }}">
+            Kembali ke beranda
+        </a>
+    </main>
+</body>
+</html>

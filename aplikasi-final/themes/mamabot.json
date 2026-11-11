@@ -1,0 +1,490 @@
+{
+  "id": "mamabot",
+  "name": "Sahabat Bunda dan Si Kecil",
+  "bot_name": "MamaBot",
+  "avatar": "🤱",
+  "color": "#D9778B",
+  "description": "Teman ngobrol Bunda untuk berbagi informasi dan belajar seputar kehamilan, persalinan, menyusui, MPASI, dan perawatan si Kecil.",
+  "greeting": "Hai, Bunda! 💗 Apa kabar hari ini? Aku MamaBot, teman ngobrol Bunda seputar perjalanan menjadi seorang ibu. Mulai dari masa kehamilan, persiapan persalinan, menyusui, MPASI, sampai merawat si Kecil. Jangan ragu untuk bertanya, ya, Bun! Kita belajar bersama.",
+  "suggestions": [
+    "Bun, makanan apa yang baik untuk ibu hamil?",
+    "Apa saja tanda-tanda mau melahirkan?",
+    "Gimana cara menyusui yang benar, ya?",
+    "Bun, bayi umur 6 bulan sudah boleh makan apa?"
+  ],
+  "fallback": [
+    "Maaf ya, Bun, aku belum punya informasi tentang itu. Coba tanyakan seputar kehamilan, persalinan, menyusui, MPASI, atau perawatan si Kecil, yuk!",
+    "Wah, sepertinya pertanyaan Bunda belum ada dalam pengetahuanku. Coba tanya hal lain seputar kesehatan ibu dan si Kecil, ya. 💗"
+  ],
+  "intents": [
+    {
+      "tag": "makanan_hamil",
+      "patterns": [
+        "makanan ibu hamil",
+        "makanan yang baik untuk ibu hamil",
+        "nutrisi yang dibutuhkan saat hamil",
+        "buah dan sayur yang baik untuk kehamilan",
+        "bagaimana menjaga gizi selama kehamilan"
+      ],
+      "responses": [
+        "Bun, selama hamil yuk usahakan makannya bergizi seimbang, ya! Ada karbohidrat, protein, sayur, buah, dan zat besi. Pilih makanan yang beragam dan diolah dengan aman biar Bunda dan si Kecil sama-sama sehat. 🥗",
+        "Kebutuhan nutrisi selama hamil bisa Bunda penuhi lewat makanan yang bervariasi, Bun, misalnya nasi atau sumber karbohidrat lain, lauk berprotein, sayur, dan buah. Soal suplemen, konsultasikan dulu dengan tenaga kesehatan, ya. 💗"
+      ]
+    },
+    {
+      "tag": "kopi_hamil",
+      "patterns": [
+        "ibu hamil boleh minum kopi",
+        "kopi saat hamil aman atau tidak",
+        "berapa banyak kafein untuk ibu hamil",
+        "apakah kafein berbahaya saat kehamilan",
+        "bolehkah minum minuman berkafein ketika hamil"
+      ],
+      "responses": [
+        "Bun, kafein dari kopi, teh, cokelat, dan minuman lainnya sebaiknya dibatasi dulu selama hamil, ya. Soal batas yang pas dengan kondisi kehamilan Bunda, tanyakan ke bidan atau dokter, ya. ☕",
+        "Eits, kafein itu bukan cuma ada di kopi, lho, Bun! Perhatikan juga sumber kafein lainnya, dan diskusikan dengan tenaga kesehatan berapa konsumsi yang aman selama kehamilan, ya."
+      ]
+    },
+    {
+      "tag": "mual_hamil",
+      "patterns": [
+        "ibu hamil sering mual",
+        "kenapa mual saat hamil",
+        "cara mengatasi mual ketika hamil",
+        "apa penyebab morning sickness",
+        "bagaimana mengurangi rasa mual saat kehamilan"
+      ],
+      "responses": [
+        "Mual saat hamil itu umum banget kok, Bun, apalagi di awal kehamilan. Banyak ibu merasa lebih enakan kalau makan porsi kecil tapi lebih sering, dan menghindari aroma atau makanan yang memicu mual. 🤍",
+        "Coba makan sedikit-sedikit tapi lebih sering dan jangan lupa cukup minum, ya, Bun. Tapi kalau muntahnya terus-menerus, sulit makan atau minum, atau badan terasa sangat lemas, segera konsultasi ke tenaga kesehatan, ya."
+      ]
+    },
+    {
+      "tag": "olahraga_hamil",
+      "patterns": [
+        "ibu hamil boleh olahraga",
+        "olahraga yang aman saat hamil",
+        "apakah ibu hamil boleh jalan kaki",
+        "senam untuk ibu hamil",
+        "aktivitas fisik selama kehamilan"
+      ],
+      "responses": [
+        "Aktivitas fisik ringan seperti jalan kaki umumnya boleh dilakukan selama hamil tanpa komplikasi, Bun. Jenis dan intensitasnya disesuaikan dengan kondisi Bunda dan arahan tenaga kesehatan, ya. 🚶‍♀️",
+        "Olahraga saat hamil lakukan yang nyaman aja, Bun, jangan dipaksakan. Kalau Bunda punya keluhan, komplikasi, atau ada larangan aktivitas dari dokter, konsultasi dulu ya sebelum mulai."
+      ]
+    },
+    {
+      "tag": "bahaya_hamil",
+      "patterns": [
+        "tanda bahaya kehamilan",
+        "bahaya yang harus diwaspadai saat hamil",
+        "perdarahan saat hamil apakah berbahaya",
+        "sakit kepala hebat ketika hamil",
+        "kapan keluhan kehamilan harus segera diperiksa"
+      ],
+      "responses": [
+        "Bun, perdarahan, sakit kepala hebat, gangguan penglihatan, nyeri perut hebat, kejang, atau pembengkakan mendadak bisa jadi tanda bahaya. Kalau Bunda mengalaminya, segera cari pemeriksaan medis, ya. 🚨",
+        "Jangan ditunda, ya, Bun, kalau muncul perdarahan, nyeri hebat, sesak napas berat, kejang, atau keluhan serius lainnya. Langsung hubungi tenaga kesehatan atau segera menuju fasilitas kesehatan, ya."
+      ]
+    },
+    {
+      "tag": "tanda_melahirkan",
+      "patterns": [
+        "tanda akan melahirkan",
+        "tanda persalinan sudah dekat",
+        "bagaimana mengetahui waktu persalinan",
+        "ciri ciri kontraksi persalinan",
+        "bagaimana membedakan kontraksi persalinan",
+        "apa saja tanda tanda persalinan",
+        "apa saja tanda tanda mau melahirkan"
+      ],
+      "responses": [
+        "Tanda persalinan bisa berupa kontraksi yang makin teratur dan kuat, keluarnya lendir bercampur darah, atau pecahnya air ketuban, Bun. Kalau Bunda mengalaminya, hubungi bidan atau fasilitas kesehatan untuk mendapat arahan, ya. 💗",
+        "Setiap ibu bisa mengalami tanda persalinan yang berbeda-beda, Bun. Kalau kontraksinya sudah teratur, ketuban pecah, atau terjadi perdarahan, segera hubungi tenaga kesehatan, ya."
+      ]
+    },
+    {
+      "tag": "persiapan_persalinan",
+      "patterns": [
+        "cara mempersiapkan persalinan",
+        "persiapan sebelum melahirkan",
+        "apa yang perlu disiapkan menjelang persalinan",
+        "bagaimana membuat rencana persalinan",
+        "hal yang harus dipersiapkan ibu sebelum lahiran"
+      ],
+      "responses": [
+        "Yuk, siapkan dari sekarang, Bun! Persiapan persalinan bisa mencakup menentukan tempat bersalin, menyiapkan transportasi, dokumen kesehatan, pendamping, serta perlengkapan Bunda dan si Kecil. 🧳",
+        "Buat rencana persalinan bareng keluarga dan tenaga kesehatan, ya, Bun. Pastikan nomor kontak penting, pilihan fasilitas kesehatan, dan transportasinya sudah disiapkan."
+      ]
+    },
+    {
+      "tag": "perlengkapan_persalinan",
+      "patterns": [
+        "barang yang dibawa saat melahirkan",
+        "perlengkapan untuk persalinan",
+        "apa isi tas persalinan",
+        "yang harus dibawa ke rumah sakit saat lahiran",
+        "daftar perlengkapan ibu dan bayi untuk melahirkan"
+      ],
+      "responses": [
+        "Perlengkapan persalinan bisa meliputi identitas diri, Buku KIA atau dokumen pemeriksaan, pakaian Bunda dan bayi, perlengkapan mandi, pembalut nifas, serta kebutuhan pribadi Bunda, ya. 🎒",
+        "Siapkan tas persalinannya lebih awal, Bun. Pisahkan kebutuhan Bunda dan bayi biar mudah ditemukan, dan tanyakan ke fasilitas kesehatan kalau ada perlengkapan khusus yang perlu dibawa."
+      ]
+    },
+    {
+      "tag": "masa_nifas",
+      "patterns": [
+        "apa itu masa nifas",
+        "pengertian masa nifas",
+        "berapa lama masa nifas",
+        "apa yang terjadi setelah melahirkan",
+        "bagaimana merawat diri selama masa nifas"
+      ],
+      "responses": [
+        "Masa nifas itu periode pemulihan tubuh Bunda setelah melahirkan. Di masa ini Bunda perlu beristirahat, menjaga kebersihan, memenuhi kebutuhan gizi, dan melakukan pemeriksaan sesuai jadwal, ya. 🌷",
+        "Setelah melahirkan, tubuh Bunda butuh waktu untuk pulih, Bun. Perhatikan kondisi fisik dan perasaan Bunda, minta dukungan keluarga, dan konsultasikan keluhan ke tenaga kesehatan, ya."
+      ]
+    },
+    {
+      "tag": "luka_persalinan",
+      "patterns": [
+        "cara merawat luka setelah melahirkan",
+        "bagaimana merawat luka jahitan persalinan",
+        "luka jahitan lahiran terasa sakit",
+        "cara menjaga kebersihan luka persalinan",
+        "kapan luka setelah melahirkan harus diperiksa"
+      ],
+      "responses": [
+        "Jaga kebersihan area luka dan rawat sesuai petunjuk tenaga kesehatan, ya, Bun. Cuci tangan dulu sebelum dan sesudah membersihkannya, dan jangan oleskan bahan yang tidak dianjurkan, ya.",
+        "Segera periksa, ya, Bun, kalau lukanya makin nyeri, tampak bengkak atau bernanah, disertai demam, berbau tidak biasa, atau terjadi perdarahan berlebihan."
+      ]
+    },
+    {
+      "tag": "asi_pertama",
+      "patterns": [
+        "kapan bayi diberi asi pertama kali",
+        "kapan mulai menyusui setelah melahirkan",
+        "apa itu inisiasi menyusu dini",
+        "bayi baru lahir langsung diberi asi",
+        "berapa lama setelah lahir bayi mulai menyusu"
+      ],
+      "responses": [
+        "ASI sebaiknya mulai diberikan dalam satu jam pertama setelah lahir, Bun, kalau kondisi Bunda dan bayi memungkinkan. Inisiasi Menyusu Dini bisa membantu proses awal menyusui, lho. 🤱",
+        "Kalau kondisi Bunda dan bayi stabil, biasanya tenaga kesehatan akan membantu kontak kulit ke kulit dan proses menyusu sesegera mungkin setelah persalinan, Bun."
+      ]
+    },
+    {
+      "tag": "asi_eksklusif",
+      "patterns": [
+        "apa itu asi eksklusif",
+        "asi eksklusif diberikan sampai umur berapa",
+        "berapa lama bayi mendapat asi eksklusif",
+        "apakah asi eksklusif tanpa air putih",
+        "manfaat pemberian asi eksklusif"
+      ],
+      "responses": [
+        "ASI eksklusif itu pemberian ASI saja untuk bayi selama enam bulan pertama, Bun, tanpa tambahan makanan atau minuman lain, kecuali atas indikasi medis. 💗",
+        "Selama enam bulan pertama, bayi umumnya cukup dengan ASI saja, Bun, tanpa tambahan air putih atau makanan lain. Setelah itu, MPASI mulai diberikan sambil tetap melanjutkan ASI, ya."
+      ]
+    },
+    {
+      "tag": "simpan_asi",
+      "patterns": [
+        "cara menyimpan asi perah",
+        "berapa lama asi perah bisa disimpan",
+        "bagaimana penyimpanan asip yang benar",
+        "wadah untuk menyimpan asi perah",
+        "cara memberi label pada asi perah"
+      ],
+      "responses": [
+        "Simpan ASI perah dalam wadah khusus yang bersih dan tertutup rapat, ya, Bun. Jangan lupa beri label tanggal dan waktu pemerahan, lalu ikuti panduan penyimpanan sesuai suhu tempat penyimpanannya. 🍼",
+        "Pakai wadah penyimpanan ASI yang aman untuk makanan, dan bagi ASI dalam porsi sesuai kebutuhan bayi, Bun. Hindari mencampur ASI baru dengan ASI lama yang belum didinginkan sesuai panduan, ya."
+      ]
+    },
+    {
+      "tag": "asi_sedikit",
+      "patterns": [
+        "asi saya terasa sedikit",
+        "kenapa produksi asi sedikit",
+        "asi tidak lancar bagaimana",
+        "bagaimana menjaga produksi asi",
+        "apa penyebab jumlah asi berkurang"
+      ],
+      "responses": [
+        "Produksi ASI bisa dipengaruhi frekuensi menyusui atau memerah, pelekatan bayi, dan kondisi Bunda, Bun. Menyusui sesuai kebutuhan bayi bisa membantu menjaga produksi ASI, ya. 🤍",
+        "Kalau Bunda khawatir ASI-nya kurang, perhatikan juga tanda kecukupan asupan bayi, dan minta bantuan bidan atau konselor laktasi untuk mengevaluasi proses menyusuinya, ya, Bun."
+      ]
+    },
+    {
+      "tag": "posisi_menyusui",
+      "patterns": [
+        "posisi menyusui yang benar",
+        "bagaimana cara menyusui bayi dengan benar",
+        "cara pelekatan bayi saat menyusu",
+        "posisi bayi ketika menyusu",
+        "bagaimana agar bayi melekat dengan baik"
+      ],
+      "responses": [
+        "Posisikan tubuh bayi menghadap Bunda, dengan kepala dan badan sejajar, ya, Bun. Dekatkan bayi ke payudara, pastikan mulutnya terbuka lebar, dan dagunya menyentuh payudara. 🤱",
+        "Pelekatan yang baik bikin bayi menyusu lebih efektif, Bun. Kalau terasa sangat sakit, puting lecet, atau bayi sulit melekat, minta bantuan bidan atau konselor laktasi, ya."
+      ]
+    },
+    {
+      "tag": "mulai_mpasi",
+      "patterns": [
+        "bayi umur berapa mulai mpasi",
+        "kapan bayi mulai makan mpasi",
+        "usia yang tepat untuk memberikan mpasi",
+        "apakah bayi empat bulan boleh mpasi",
+        "tanda bayi siap menerima makanan pendamping"
+      ],
+      "responses": [
+        "MPASI umumnya mulai diberikan saat bayi berusia sekitar enam bulan, Bun, dengan tetap melanjutkan pemberian ASI. Perhatikan kesiapan perkembangan bayi, dan konsultasikan kalau ada kondisi khusus, ya. 🥣",
+        "Sekitar usia enam bulan, kebutuhan nutrisi si Kecil mulai memerlukan makanan pendamping selain ASI, Bun. Jangan buru-buru memberikan MPASI sebelum waktunya tanpa arahan tenaga kesehatan, ya."
+      ]
+    },
+    {
+      "tag": "menu_mpasi",
+      "patterns": [
+        "contoh menu mpasi bayi",
+        "makanan mpasi pertama untuk bayi",
+        "apa saja bahan makanan untuk mpasi",
+        "bagaimana membuat menu mpasi bergizi",
+        "makanan yang baik untuk bayi enam bulan",
+        "bayi umur 6 bulan boleh makan apa",
+        "bayi usia 6 bulan sudah boleh makan apa saja"
+      ],
+      "responses": [
+        "Menu MPASI sebaiknya beragam, ya, Bun, dengan sumber karbohidrat, protein hewani, lemak, serta sayuran. Sesuaikan tekstur dan jenis makanan dengan usia serta kemampuan si Kecil. 🥕",
+        "Usahakan MPASI-nya mengandung sumber energi dan protein, terutama protein hewani, dengan bahan makanan yang bervariasi, Bun. Pastikan makanannya matang, bersih, dan disajikan dengan tekstur yang sesuai, ya."
+      ]
+    },
+    {
+      "tag": "frekuensi_mpasi",
+      "patterns": [
+        "berapa kali bayi makan mpasi sehari",
+        "jadwal makan mpasi bayi",
+        "frekuensi pemberian mpasi",
+        "bayi enam bulan makan berapa kali",
+        "seberapa sering bayi harus diberi mpasi"
+      ],
+      "responses": [
+        "Bayi usia 6–8 bulan umumnya mulai diberi MPASI 2–3 kali sehari, Bun. Frekuensi dan jumlah makanannya ditingkatkan secara bertahap sesuai usia, kemampuan, dan kebutuhan si Kecil, ya.",
+        "Atur jadwal MPASI-nya secara bertahap, ya, Bun, sambil perhatikan respons si Kecil. Pedoman frekuensi bisa berbeda sesuai kelompok usia, jadi konsultasikan dengan tenaga kesehatan kalau diperlukan."
+      ]
+    },
+    {
+      "tag": "madu_bayi",
+      "patterns": [
+        "bayi boleh makan madu",
+        "apakah madu aman untuk bayi",
+        "bolehkah memberi madu pada bayi enam bulan",
+        "kenapa bayi di bawah satu tahun tidak boleh madu",
+        "madu untuk bayi usia berapa"
+      ],
+      "responses": [
+        "Bun, bayi berusia di bawah 12 bulan tidak boleh diberi madu, ya, termasuk madu yang dicampur ke makanan, karena berisiko menyebabkan botulisme pada bayi. 🍯",
+        "Hindari memberikan madu ke bayi sebelum usia satu tahun, ya, Bun. Kalau si Kecil telanjur mengonsumsi madu dan muncul gejala yang mengkhawatirkan, segera hubungi tenaga kesehatan."
+      ]
+    },
+    {
+      "tag": "tekstur_mpasi",
+      "patterns": [
+        "tekstur mpasi sesuai usia bayi",
+        "bagaimana tekstur makanan bayi",
+        "mpasi bayi harus dihaluskan atau tidak",
+        "kapan tekstur mpasi dinaikkan",
+        "jenis tekstur makanan pendamping asi"
+      ],
+      "responses": [
+        "Tekstur makanan ditingkatkan secara bertahap sesuai kemampuan si Kecil, ya, Bun, mulai dari makanan lumat atau puree kental, kemudian cincang, hingga makanan keluarga yang sesuai.",
+        "Sesuaikan tekstur MPASI dengan perkembangan kemampuan mengunyah dan menelan bayi, Bun. Beri si Kecil kesempatan mengenal tekstur secara bertahap, dan tetap awasi saat makan, ya."
+      ]
+    },
+    {
+      "tag": "mandi_bayi",
+      "patterns": [
+        "cara memandikan bayi",
+        "bagaimana memandikan bayi baru lahir",
+        "berapa kali bayi perlu mandi",
+        "cara membersihkan tubuh bayi",
+        "apa yang perlu disiapkan sebelum memandikan bayi"
+      ],
+      "responses": [
+        "Pakai air hangat suam-suam kuku, siapkan perlengkapan dulu, dan bersihkan tubuh bayi dengan lembut, ya, Bun. Jangan pernah meninggalkan bayi sendirian selama mandi, ya! 🛁",
+        "Mandikan bayi di tempat yang aman dan jaga kepala serta tubuhnya dengan baik, Bun. Pakai produk yang lembut, dan segera keringkan tubuh bayi setelah selesai, ya."
+      ]
+    },
+    {
+      "tag": "tidur_bayi",
+      "patterns": [
+        "bayi tidur berapa jam sehari",
+        "berapa lama waktu tidur bayi",
+        "jadwal tidur bayi sesuai usia",
+        "kenapa bayi sering terbangun saat tidur",
+        "bagaimana membuat rutinitas tidur bayi"
+      ],
+      "responses": [
+        "Kebutuhan tidur bayi berbeda sesuai usia, Bun, dan bisa terbagi dalam beberapa periode siang serta malam. Buat rutinitas tidur yang nyaman dan perhatikan tanda bayi mengantuk, ya. 😴",
+        "Bayi bisa terbangun beberapa kali, apalagi di usia awal, Bun. Pastikan lingkungan tidurnya nyaman dan aman, dan konsultasikan kalau pola tidurnya disertai keluhan kesehatan, ya."
+      ]
+    },
+    {
+      "tag": "posisi_tidur_bayi",
+      "patterns": [
+        "posisi tidur bayi yang aman",
+        "bayi sebaiknya tidur telentang atau tengkurap",
+        "apakah bayi boleh tidur tengkurap",
+        "bagaimana cara menidurkan bayi dengan aman",
+        "posisi tidur untuk mencegah risiko kematian mendadak bayi"
+      ],
+      "responses": [
+        "Baringkan bayi dalam posisi telentang setiap kali tidur, ya, Bun, di permukaan yang rata dan kokoh. Hindari bantal, selimut longgar, boneka, dan benda lunak di area tidurnya. 🌙",
+        "Untuk tidur, tempatkan bayi telentang di tempat tidur khusus bayi yang aman, ya, Bun. Jangan pakai benda tambahan untuk menyangga posisi tubuhnya."
+      ]
+    },
+    {
+      "tag": "tali_pusat",
+      "patterns": [
+        "cara merawat tali pusat bayi",
+        "bagaimana membersihkan tali pusar bayi",
+        "tali pusat bayi harus dijaga bagaimana",
+        "bolehkah memberi minyak pada tali pusat bayi",
+        "apa yang harus dihindari saat merawat pusar bayi",
+        "merawat pusar bayi yang belum puput"
+      ],
+      "responses": [
+        "Jaga tali pusat tetap bersih dan kering, serta biarkan terkena udara, ya, Bun. Hindari mengoleskan minyak, bedak, atau bahan lain yang tidak dianjurkan tenaga kesehatan.",
+        "Lipat bagian depan popok supaya tidak menutupi tali pusat, ya, Bun. Segera periksakan kalau area sekitar pusar tampak merah meluas, bernanah, berbau tidak biasa, atau bayi demam."
+      ]
+    },
+    {
+      "tag": "ganti_popok",
+      "patterns": [
+        "seberapa sering popok bayi harus diganti",
+        "kapan popok bayi perlu diganti",
+        "cara mengganti popok bayi",
+        "bagaimana mencegah ruam popok",
+        "cara membersihkan bayi saat ganti popok",
+        "ganti popok bayi berapa kali sehari"
+      ],
+      "responses": [
+        "Cek popok secara berkala, ya, Bun, dan ganti saat basah atau kotor biar kulit si Kecil tetap bersih dan terhindar dari iritasi. Bersihkan area popok dengan lembut. 💛",
+        "Saat mengganti popok, bersihkan dari arah depan ke belakang dan keringkan kulit sebelum memakai popok baru, Bun. Kalau muncul ruam yang menetap atau memburuk, konsultasikan dengan tenaga kesehatan, ya."
+      ]
+    },
+    {
+      "tag": "salam",
+      "patterns": [
+        "halo",
+        "hai",
+        "hi mamabot",
+        "selamat pagi",
+        "assalamualaikum"
+      ],
+      "responses": [
+        "Halo, Bunda! 👋 Aku MamaBot, siap membantu menjawab pertanyaan seputar kesehatan ibu dan perawatan bayi. Ada yang ingin Bunda tanyakan?",
+        "Hai, Bunda! 💗 Selamat datang di MamaBot. Silakan tanyakan hal yang ingin Bunda ketahui, ya."
+      ]
+    },
+    {
+      "tag": "perkenalan_bot",
+      "patterns": [
+        "kamu siapa",
+        "siapa nama kamu",
+        "kamu bot apa",
+        "apakah kamu manusia",
+        "boleh kenalan dengan mamabot"
+      ],
+      "responses": [
+        "Aku MamaBot, chatbot edukasi kesehatan ibu dan perawatan bayi, Bun. Aku program komputer, bukan manusia, dan aku memberikan informasi edukatif berdasarkan pengetahuan yang sudah disiapkan. 🤖",
+        "Namaku MamaBot! 💗 Aku dibuat untuk membantu Bunda dengan informasi seputar kehamilan, persalinan, menyusui, MPASI, dan perawatan bayi."
+      ]
+    },
+    {
+      "tag": "kemampuan_bot",
+      "patterns": [
+        "mamabot bisa bantu apa",
+        "topik apa saja yang bisa ditanyakan",
+        "apa fungsi mamabot",
+        "kamu bisa menjawab pertanyaan apa",
+        "apa saja kemampuan chatbot ini",
+        "kamu bisa bantu apa saja"
+      ],
+      "responses": [
+        "Aku bisa membantu menjawab pertanyaan seputar kehamilan, persalinan, menyusui, MPASI, dan perawatan bayi, Bun. Tapi aku tidak bisa mendiagnosis penyakit atau meresepkan obat, ya.",
+        "MamaBot menyediakan informasi edukatif tentang kesehatan ibu dan perawatan bayi, Bun. Untuk pemeriksaan, diagnosis, atau penanganan medis, tetap hubungi tenaga kesehatan, ya."
+      ]
+    },
+    {
+      "tag": "darurat_medis",
+      "patterns": [
+        "ibu mengalami perdarahan hebat",
+        "bayi sesak napas",
+        "bayi mengalami kejang",
+        "ibu hamil mengalami kejang",
+        "bayi tidak sadar"
+      ],
+      "responses": [
+        "Bun, kondisi ini bisa jadi keadaan darurat. Segera hubungi layanan darurat atau langsung menuju IGD/fasilitas kesehatan terdekat sekarang juga, ya. Jangan ditunda penanganannya. 🚨",
+        "Bun, MamaBot tidak bisa menangani keadaan darurat. Segera cari pertolongan medis langsung dengan menghubungi layanan kegawatdaruratan atau menuju fasilitas kesehatan terdekat, ya."
+      ]
+    },
+    {
+      "tag": "konsultasi_nakes",
+      "patterns": [
+        "kapan harus konsultasi ke bidan",
+        "kapan ibu hamil perlu ke dokter",
+        "kapan bayi harus diperiksa dokter anak",
+        "kapan perlu bantuan konselor laktasi",
+        "siapa yang bisa membantu masalah menyusui"
+      ],
+      "responses": [
+        "Lakukan pemeriksaan kehamilan secara rutin, ya, Bun, dan segera hubungi tenaga kesehatan kalau muncul keluhan atau tanda bahaya. Untuk masalah menyusui, bidan atau konselor laktasi siap membantu. 💗",
+        "Tenaga kesehatan bisa menilai kondisi Bunda dan bayi secara langsung, Bun. Jangan tunda konsultasi kalau bayi demam, tidak mau menyusu, tampak lemas, atau Bunda mengalami keluhan yang mengkhawatirkan, ya."
+      ]
+    },
+    {
+      "tag": "posyandu",
+      "patterns": [
+        "apa itu posyandu",
+        "apa manfaat posyandu untuk bayi",
+        "kapan harus membawa bayi ke posyandu",
+        "apakah posyandu melayani imunisasi bayi",
+        "apakah bayi perlu ditimbang di posyandu"
+      ],
+      "responses": [
+        "Posyandu itu layanan kesehatan berbasis masyarakat untuk memantau kesehatan ibu dan anak, Bun, termasuk penimbangan, pemantauan pertumbuhan, serta pelayanan imunisasi sesuai jadwal. 🏥",
+        "Lewat Posyandu, Bunda bisa memantau pertumbuhan dan perkembangan si Kecil sekaligus mendapat informasi kesehatan, Bun. Jadwal layanannya bisa Bunda tanyakan ke kader atau petugas setempat, ya."
+      ]
+    },
+    {
+      "tag": "terima_kasih",
+      "patterns": [
+        "terima kasih",
+        "makasih",
+        "thanks mamabot",
+        "oke sip terima kasih",
+        "jawabannya sangat membantu"
+      ],
+      "responses": [
+        "Sama-sama, Bunda! 💗 Semoga informasinya bermanfaat untuk Bunda dan si Kecil.",
+        "Dengan senang hati, Bunda! Jangan ragu bertanya lagi kalau ada hal lain yang ingin diketahui, ya."
+      ]
+    },
+    {
+      "tag": "pamit",
+      "patterns": [
+        "dadah mamabot",
+        "sampai jumpa",
+        "bye",
+        "sudah dulu",
+        "selamat tinggal"
+      ],
+      "responses": [
+        "Sampai jumpa, Bunda! 👋 Semoga sehat selalu bersama si Kecil. MamaBot siap membantu kapan pun Bunda membutuhkan informasi.",
+        "Baik, Bunda. Terima kasih sudah ngobrol dengan MamaBot! Jaga kesehatan, ya, dan sampai bertemu lagi! 💗"
+      ]
+    }
+  ]
+}

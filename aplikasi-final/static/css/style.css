@@ -1,0 +1,549 @@
+/* =========================================================
+   CHAT UI — pastel glass ala referensi
+   Untuk chat.html (class: chat-page, chat-shell, chat-container, ...)
+   Tempelkan di bagian PALING BAWAH style.css,
+   atau gantikan blok "CHAT UI" yang lama.
+   ========================================================= */
+
+:root {
+    --ink: #1f1f2b;
+    --ink-soft: #7b7b88;
+    --pink: #f06fc6;
+    --pink-deep: #e255b4;
+    --online: #55ad7a;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { width: 100%; height: 100%; margin: 0; }
+
+body, button, input, textarea {
+    font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+    color: var(--ink);
+}
+
+a { color: inherit; text-decoration: none; }
+h1, h2 { margin: 0; letter-spacing: -.02em; }
+
+.sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+.ic {
+    width: 20px; height: 20px; flex-shrink: 0;
+    fill: none; stroke: currentColor; stroke-width: 1.7;
+    stroke-linecap: round; stroke-linejoin: round;
+}
+
+:focus-visible { outline: 2px solid var(--pink-deep); outline-offset: 3px; }
+
+/* ---------- Halaman & bingkai ---------- */
+body.chat-page {
+    height: 100dvh;
+    overflow: hidden;
+    padding: clamp(10px, 3vw, 40px);
+    background:
+        radial-gradient(ellipse at 0% 0%, #ececf1, transparent 40%),
+        radial-gradient(ellipse at 100% 10%, #e3ebfb, transparent 40%),
+        #f1f1f5;
+}
+
+.chat-shell {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .95);
+    border-radius: 28px;
+    background:
+        radial-gradient(ellipse at 6% 12%, rgba(255, 229, 220, .95), transparent 42%),
+        radial-gradient(ellipse at 96% 22%, rgba(222, 232, 255, .95), transparent 44%),
+        radial-gradient(ellipse at 55% 105%, rgba(255, 221, 236, .95), transparent 46%),
+        radial-gradient(ellipse at 10% 70%, rgba(250, 244, 205, .55), transparent 35%),
+        #fdf9fa;
+    box-shadow: 0 0 0 6px rgba(255, 255, 255, .45), 0 28px 70px rgba(100, 94, 115, .16);
+}
+
+/* Tekstur anyaman tipis di tengah */
+.chat-shell::before {
+    content: "";
+    position: absolute; inset: 14% 24% 16%; z-index: -1;
+    pointer-events: none;
+    opacity: .5;
+    background-image:
+        linear-gradient(45deg, transparent 46%, rgba(180, 180, 200, .30) 49%, rgba(180, 180, 200, .30) 51%, transparent 54%),
+        linear-gradient(-45deg, transparent 46%, rgba(180, 180, 200, .30) 49%, rgba(180, 180, 200, .30) 51%, transparent 54%);
+    background-size: 18px 18px;
+    -webkit-mask-image: radial-gradient(ellipse, #000 10%, transparent 70%);
+    mask-image: radial-gradient(ellipse, #000 10%, transparent 70%);
+}
+
+.shell-aura, .shell-glow { position: absolute; z-index: -1; pointer-events: none; }
+
+.shell-aura {
+    top: 42%; left: 50%;
+    width: min(900px, 90vw); aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 222, 238, .40), transparent 68%);
+    filter: blur(35px);
+}
+
+.shell-glow {
+    left: 50%; bottom: -35%;
+    width: 80%; height: 55%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(226, 231, 255, .50), transparent 70%);
+    filter: blur(35px);
+}
+
+/* ---------- Kontainer ---------- */
+.chat-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1100px;
+    min-width: 0;
+}
+
+/* ---------- Header: tombol bulat + nama bot ---------- */
+.chat-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+    padding: 4px 8px 0;
+}
+
+.back-button {
+    display: grid; place-items: center;
+    width: 64px; height: 64px; flex: 0 0 64px;
+    border: 0; border-radius: 50%;
+    background: rgba(255, 255, 255, .78);
+    box-shadow: 0 4px 20px rgba(110, 100, 130, .06);
+    cursor: pointer;
+    transition: background .18s ease, transform .18s ease;
+}
+.back-button:hover { background: #fff; transform: translateY(-1px); }
+.back-button .ic { width: 22px; height: 22px; }
+
+.chat-header > img {
+    width: 42px; height: 42px;
+    padding: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .78);
+    object-fit: contain;
+}
+
+.chat-header-info h2 { font-size: 15px; font-weight: 700; line-height: 1.3; }
+.chat-header-info span { color: var(--ink-soft); font-size: 12px; font-weight: 500; }
+
+.online-dot {
+    display: inline-block;
+    width: 7px; height: 7px; margin-right: 5px;
+    border-radius: 50%;
+    background: var(--online);
+}
+
+/* ---------- Percakapan ---------- */
+.chat-content {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 24px clamp(16px, 4vw, 40px);
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(190, 180, 200, .5) transparent;
+}
+
+/* Sapaan awal */
+.chat-introduction {
+    max-width: 580px;
+    margin: 4vh auto 24px;
+    text-align: center;
+}
+
+.welcome-icon {
+    display: grid; place-items: center;
+    width: 56px; height: 56px;
+    margin: 0 auto 16px;
+    border: 2px solid rgba(255, 255, 255, .9);
+    border-radius: 50%;
+    color: #fff;
+    background:
+        radial-gradient(circle at 35% 22%, rgba(255,255,255,.9) 0 10%, transparent 30%),
+        linear-gradient(180deg, #f1a0dc 0%, #e987d2 45%, #7fdce0 100%);
+    box-shadow: 0 6px 16px rgba(160, 110, 170, .28);
+}
+
+.chat-introduction h1 { margin-bottom: 8px; font-size: clamp(26px, 3.6vw, 36px); font-weight: 700; }
+.chat-introduction > p { margin: 0; color: var(--ink-soft); font-size: 15px; line-height: 1.65; }
+
+.suggestion-section { margin-top: 28px; }
+.suggestion-section > p { margin: 0 0 12px; color: var(--ink-soft); font-size: 13px; font-weight: 600; }
+
+.suggestion-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+
+.suggestion-button {
+    padding: 10px 16px;
+    border: 1px solid #fff;
+    border-radius: 999px;
+    color: #4a4a58;
+    background: rgba(255, 255, 255, .72);
+    box-shadow: 0 5px 18px rgba(100, 93, 120, .06);
+    font-family: inherit; font-size: 13px; font-weight: 500;
+    cursor: pointer;
+    transition: background .18s ease, transform .18s ease;
+}
+.suggestion-button:hover { background: #fff; transform: translateY(-2px); }
+
+/* ---------- Bubble pesan ---------- */
+.chat-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.message {
+    position: relative;
+    max-width: 78%;
+    font-size: 15px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+/* Pengguna: pil pink di kanan */
+.message.user {
+    align-self: flex-end;
+    padding: 14px 22px;
+    border-radius: 28px;
+    color: #fff;
+    background: var(--pink);
+    line-height: 1.45;
+}
+.message.user::after {              /* titik kecil di sudut, seperti referensi */
+    content: "";
+    position: absolute; right: -2px; bottom: 2px;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--pink);
+}
+
+/* Bot: bubble putih + avatar bola di kiri */
+.message.bot {
+    align-self: flex-start;
+    margin-left: 68px;
+    padding: 18px 20px;
+    border-radius: 22px;
+    color: #2a2a37;
+    background: #fff;
+    box-shadow: 0 6px 22px rgba(110, 100, 130, .06);
+}
+.message.bot::before {
+    content: "";
+    position: absolute; left: -68px; top: -2px;
+    width: 52px; height: 52px;
+    border: 2px solid rgba(255, 255, 255, .9);
+    border-radius: 50%;
+    background:
+        url("../img/mamabot-icon.svg") center / 56% no-repeat,
+        radial-gradient(circle at 35% 22%, rgba(255,255,255,.95) 0 10%, transparent 30%),
+        linear-gradient(180deg, #f1a0dc 0%, #e987d2 45%, #7fdce0 100%);
+    box-shadow: 0 6px 14px rgba(160, 110, 170, .28), inset 0 -4px 8px rgba(80, 200, 210, .35);
+}
+
+.message-label {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--ink-soft);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* Animasi mengetik */
+.typing-dots { display: inline-flex; gap: 5px; padding: 6px 0 2px; }
+.typing-dots i {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #b3a6c0;
+    animation: bounce 1.1s ease-in-out infinite;
+}
+.typing-dots i:nth-child(2) { animation-delay: .15s; }
+.typing-dots i:nth-child(3) { animation-delay: .3s; }
+
+@keyframes bounce {
+    0%, 70%, 100% { transform: translateY(0); opacity: .45; }
+    35% { transform: translateY(-5px); opacity: 1; }
+}
+
+/* ---------- Kolom input (garis gradasi pastel) ---------- */
+.chat-input-area {
+    flex-shrink: 0;
+    width: min(800px, 100%);
+    margin: 0 auto;
+    padding: 6px 16px 22px;
+}
+
+#chat-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 74px;
+    padding: 8px 10px 8px 22px;
+    border: 8px solid transparent;
+    border-radius: 28px;
+    background:
+        linear-gradient(#fff, #fff) padding-box,
+        linear-gradient(100deg, #f4eaaa, #f8d3dc 45%, #cfdcf8) border-box;
+    box-shadow: 0 12px 30px rgba(100, 93, 120, .10);
+}
+
+#chat-form:focus-within {
+    box-shadow: 0 0 0 3px rgba(232, 117, 190, .14), 0 12px 30px rgba(100, 93, 120, .10);
+}
+
+#message-input {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 0;
+    border: 0; outline: 0;
+    background: transparent;
+    font-size: 15px;
+}
+#message-input::placeholder { color: #9a9aa5; }
+
+#send-button {
+    padding: 11px 22px;
+    border: 0;
+    border-radius: 999px;
+    color: #fff;
+    background: var(--pink);
+    font-family: inherit; font-size: 14px; font-weight: 600;
+    cursor: pointer;
+    transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+}
+#send-button:hover:not(:disabled) {
+    background: var(--pink-deep);
+    transform: translateY(-1px);
+    box-shadow: 0 5px 14px rgba(221, 103, 180, .28);
+}
+#send-button:disabled { opacity: .55; cursor: not-allowed; }
+
+.disclaimer {
+    margin: 10px 0 0;
+    color: #858391;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+/* ---------- Responsif ---------- */
+@media (max-width: 700px) {
+    body.chat-page { padding: 0; }
+    .chat-shell { padding: 0; border: 0; border-radius: 0; box-shadow: none; }
+    .chat-header { padding: 10px 12px 0; }
+    .back-button { width: 46px; height: 46px; flex-basis: 46px; }
+    .chat-content { padding: 18px 14px; }
+    .chat-introduction { margin-top: 2vh; }
+
+    .message { max-width: 88%; font-size: 14px; }
+    .message.user { padding: 12px 18px; }
+    .message.bot { margin-left: 46px; padding: 14px 16px; }
+    .message.bot::before { left: -46px; width: 38px; height: 38px; }
+
+    .chat-input-area { padding: 6px 10px 12px; }
+    #chat-form { min-height: 62px; padding-left: 14px; border-width: 6px; }
+    #send-button { padding: 10px 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .chat-content { scroll-behavior: auto; }
+    .typing-dots i { animation: none; opacity: .7; }
+    .back-button, .suggestion-button, #send-button { transition: none; }
+}
+
+/* =========================================================
+   FULLSCREEN PATCH — tempel di PALING BAWAH style.css
+   (setelah blok CHAT UI). Menghilangkan bingkai & batas kotak:
+   pesan scroll sampai tepi layar dan memudar halus di atas/bawah.
+   ========================================================= */
+
+/* 1. Tanpa bingkai: halaman penuh */
+body.chat-page { padding: 0; }
+
+.chat-shell {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* 2. Kontainer selebar layar, elemen di dalamnya melayang di atasnya */
+.chat-container {
+    position: relative;
+    max-width: none;
+    width: 100%;
+    height: 100%;
+}
+
+/* 3. Header melayang di kiri atas */
+.chat-header {
+    position: absolute;
+    top: 0; left: 0;
+    z-index: 5;
+    width: fit-content;
+    padding: 24px 28px 0;
+}
+
+/* 4. Area scroll memenuhi seluruh layar, tepi atas/bawah memudar */
+.chat-content {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    padding: 120px clamp(16px, 4vw, 40px) 180px;
+    scrollbar-width: none;                 /* sembunyikan scrollbar (Firefox) */
+    -ms-overflow-style: none;
+    -webkit-mask-image: linear-gradient(to bottom,
+        transparent 0, #000 110px,
+        #000 calc(100% - 190px), transparent calc(100% - 120px));
+    mask-image: linear-gradient(to bottom,
+        transparent 0, #000 110px,
+        #000 calc(100% - 190px), transparent calc(100% - 120px));
+}
+.chat-content::-webkit-scrollbar { display: none; }   /* Chrome/Edge */
+
+/* 5. Kolom input melayang di tengah bawah */
+.chat-input-area {
+    position: absolute;
+    left: 50%; bottom: 0;
+    z-index: 5;
+    transform: translateX(-50%);
+    width: min(800px, 100%);
+    margin: 0;
+}
+
+/* 6. Mobile */
+@media (max-width: 700px) {
+    .chat-header { padding: 12px 12px 0; }
+    .chat-content { padding: 84px 14px 160px; }
+}
+
+/* =========================================================
+   HEADER PATCH — tempel di PALING BAWAH style.css
+   (setelah chat-style & chat-fullscreen)
+   ========================================================= */
+
+/* Wadah kaca berbentuk pil yang membungkus semua isi header */
+.chat-header {
+    top: 18px;
+    left: clamp(14px, 3vw, 36px);
+    gap: 14px;
+    padding: 8px 26px 8px 8px;
+    border: 1px solid rgba(255, 255, 255, .95);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .62);
+    -webkit-backdrop-filter: blur(18px) saturate(1.2);
+    backdrop-filter: blur(18px) saturate(1.2);
+    box-shadow:
+        0 12px 32px rgba(110, 100, 130, .13),
+        inset 0 1px 0 rgba(255, 255, 255, .85);
+}
+
+/* Tombol kembali */
+.back-button {
+    width: 46px; height: 46px; flex: 0 0 46px;
+    color: var(--ink);
+    background: #fff;
+    box-shadow: 0 3px 10px rgba(110, 100, 130, .12);
+    transition: background .18s ease, color .18s ease, transform .18s ease;
+}
+.back-button:hover {
+    color: var(--pink-deep);
+    background: #fde9f6;
+    transform: translateX(-2px);
+}
+
+/* Logo dengan cincin gradasi pink-biru-cyan */
+.chat-header > img {
+    width: 46px; height: 46px;
+    padding: 8px;
+    border: 2.5px solid transparent;
+    border-radius: 50%;
+    background:
+        linear-gradient(#fff, #fff) padding-box,
+        linear-gradient(135deg, #f1a0dc, #a9b8f4 55%, #7fdce0) border-box;
+    box-shadow: 0 5px 14px rgba(160, 110, 170, .22);
+}
+
+/* Teks */
+.chat-header-info h2 {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -.01em;
+}
+.chat-header-info span {
+    display: flex;
+    align-items: center;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--ink-soft);
+}
+
+/* Titik online berdenyut halus */
+.online-dot {
+    position: relative;
+    margin-right: 7px;
+    animation: online-pulse 2.4s ease-out infinite;
+}
+@keyframes online-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(85, 173, 122, .55); }
+    70%  { box-shadow: 0 0 0 7px rgba(85, 173, 122, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(85, 173, 122, 0); }
+}
+
+@media (max-width: 700px) {
+    .chat-header { top: 10px; left: 10px; gap: 10px; padding: 6px 18px 6px 6px; }
+    .back-button, .chat-header > img { width: 40px; height: 40px; flex-basis: 40px; }
+    .chat-header-info h2 { font-size: 15px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .online-dot { animation: none; }
+    .back-button:hover { transform: none; }
+}
+
+/* Tombol Hapus riwayat: pil kaca seperti header */
+.clear-button {
+    margin-left: 6px;
+    padding: 9px 16px;
+    border: 1px solid #fff;
+    border-radius: 999px;
+    color: var(--ink-soft);
+    background: rgba(255, 255, 255, .85);
+    box-shadow: 0 3px 10px rgba(110, 100, 130, .10);
+    font-family: inherit;
+    font-size: 12.5px;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color .18s ease, background .18s ease, transform .18s ease;
+}
+.clear-button:hover {
+    color: var(--pink-deep);
+    background: #fde9f6;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 700px) {
+    .clear-button { padding: 7px 12px; font-size: 12px; }
+}
