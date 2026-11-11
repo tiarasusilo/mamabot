@@ -571,3 +571,190 @@ body.chat-page { padding: 0; }
     font-size: 12px;
     line-height: 1.6;
 }
+
+/* =========================================================
+   CARD PATCH — tempel di PALING BAWAH style.css
+   Background pastel tetap penuh satu layar; area chat jadi
+   kartu kaca bergaris di tengah (header, pesan, input di dalamnya).
+   Menimpa FULLSCREEN PATCH & posisi header sebelumnya.
+   ========================================================= */
+
+/* 1. Background penuh, kartu diberi jarak dari tepi layar */
+.chat-shell {
+    padding: clamp(12px, 2.5vw, 32px);
+    align-items: stretch;
+    justify-content: center;
+}
+
+/* 2. Kartu chat */
+.chat-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1000px;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .95);
+    border-radius: 28px;
+    background: rgba(255, 255, 255, .42);
+    -webkit-backdrop-filter: blur(22px) saturate(1.2);
+    backdrop-filter: blur(22px) saturate(1.2);
+    box-shadow:
+        0 24px 60px rgba(100, 94, 115, .14),
+        0 0 0 6px rgba(255, 255, 255, .35),
+        inset 0 1px 0 rgba(255, 255, 255, .9);
+}
+
+/* 3. Header menempel di bagian atas kartu */
+.chat-header {
+    position: relative;
+    top: auto; left: auto;
+    transform: none;
+    z-index: 2;
+    width: 100%;
+    max-width: none;
+    gap: 14px;
+    padding: 14px 20px;
+    border: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .85);
+    border-radius: 0;
+    background: rgba(255, 255, 255, .55);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    box-shadow: 0 6px 18px rgba(110, 100, 130, .05);
+}
+
+/* Mode belajar & Hapus riwayat di sisi kanan header */
+.chat-header .learn-toggle { margin-left: auto; }
+
+/* 4. Area pesan: scroll di dalam kartu, tepi atas/bawah memudar tipis */
+.chat-content {
+    position: relative;
+    inset: auto;
+    flex: 1;
+    min-height: 0;
+    padding: 28px clamp(16px, 4vw, 40px) 20px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(190, 180, 200, .55) transparent;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+}
+.chat-content::-webkit-scrollbar { display: block; width: 6px; }
+.chat-content::-webkit-scrollbar-track { background: transparent; }
+.chat-content::-webkit-scrollbar-thumb { border-radius: 99px; background: rgba(190, 180, 200, .55); }
+
+/* 5. Input menempel di bagian bawah kartu */
+.chat-input-area {
+    position: relative;
+    left: auto; bottom: auto;
+    transform: none;
+    z-index: 2;
+    flex-shrink: 0;
+    width: min(800px, 100%);
+    margin: 0 auto;
+    padding: 6px 24px 18px;
+}
+
+/* 6. HP: kartu memenuhi layar, header dipadatkan */
+@media (max-width: 700px) {
+    .chat-shell { padding: 0; }
+
+    .chat-container {
+        max-width: none;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .chat-header {
+        top: auto; left: auto;
+        flex-wrap: wrap;
+        gap: 8px 10px;
+        padding: 10px 12px;
+    }
+    .chat-header > img { display: none; }
+    .chat-header-info h2 { font-size: 15px; }
+    .chat-header-info span { font-size: 11.5px; }
+    .chat-header .learn-toggle { margin-left: auto; font-size: 11.5px; }
+    .clear-button { margin-left: 0; padding: 7px 11px; font-size: 11.5px; }
+
+    .chat-content { padding: 18px 14px 14px; }
+    .chat-input-area { padding: 6px 10px 12px; }
+}
+
+/* ===== CHAT LEBAR, TANPA PROFIL ===== */
+
+/* Sembunyikan panel profil */
+.profile-card { display: none; }
+
+/* Kartu chat jadi lebar dan di tengah */
+.chat-container {
+    flex: 1 1 0;
+    width: 100%;
+    max-width: 1120px;
+}
+
+/* Isi pesan ikut melebar */
+.chat-messages { max-width: 860px; }
+.chat-input-area { width: min(860px, 100%); }
+
+/* ===== BACKGROUND AURORA ===== */
+
+/* 1. Lapisan warna utama: lebih pekat dan bergerak pelan */
+.chat-shell::after {
+    inset: -10%;
+    background:
+        radial-gradient(circle at 12% 28%, rgba(247, 168, 220, .70), transparent 26%),
+        radial-gradient(circle at 30% 92%, rgba(159, 192, 255, .65), transparent 28%),
+        radial-gradient(circle at 78% 8%,  rgba(255, 210, 168, .65), transparent 26%),
+        radial-gradient(circle at 94% 72%, rgba(200, 180, 255, .55), transparent 28%),
+        radial-gradient(circle at 55% 50%, rgba(255, 200, 230, .35), transparent 30%);
+    animation: bg-drift 26s ease-in-out infinite alternate;
+    will-change: transform;
+}
+
+@keyframes bg-drift {
+    0%   { transform: translate3d(0, 0, 0) scale(1); }
+    50%  { transform: translate3d(2%, -3%, 0) scale(1.06) rotate(1.5deg); }
+    100% { transform: translate3d(-3%, 2%, 0) scale(1.10); }
+}
+
+/* 2. Bola pink besar di kiri */
+.shell-aura {
+    top: 30%; left: 18%;
+    width: min(520px, 60vw);
+    background: radial-gradient(circle, rgba(244, 160, 222, .55), transparent 68%);
+    filter: blur(30px);
+    animation: aura-float 18s ease-in-out infinite alternate;
+}
+
+@keyframes aura-float {
+    0%   { transform: translate(-50%, -50%) scale(1); }
+    100% { transform: translate(calc(-50% + 70px), calc(-50% + 50px)) scale(1.18); }
+}
+
+/* 3. Bola biru di kanan bawah */
+.shell-glow {
+    left: auto; right: 6%;
+    bottom: 2%;
+    width: min(480px, 55vw);
+    height: auto;
+    aspect-ratio: 1;
+    transform: none;
+    background: radial-gradient(circle, rgba(150, 185, 255, .55), transparent 68%);
+    filter: blur(30px);
+    animation: glow-float 22s ease-in-out infinite alternate;
+}
+
+@keyframes glow-float {
+    0%   { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(-80px, -60px) scale(1.2); }
+}
+
+/* 4. Hormati pengaturan "kurangi animasi" */
+@media (prefers-reduced-motion: reduce) {
+    .chat-shell::after,
+    .shell-aura,
+    .shell-glow { animation: none; }
+}
